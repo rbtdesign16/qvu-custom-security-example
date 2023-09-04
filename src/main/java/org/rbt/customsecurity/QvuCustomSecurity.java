@@ -20,14 +20,14 @@ import org.rbt.qvu.client.utils.User;
  * @author rbtuc
  */
 public class QvuCustomSecurity implements SecurityService {
+    // dummy user
     private static final String ADMIN = "admin";
-    private static final String USER = "user";
+    private static final String USER = "admin";
     
-    public static final String DEFAULT_ADMINISTRATOR_ROLE = "administrator";
-    public static final String DEFAULT_QUERY_DESIGNER_ROLE = "query designer";
-    public static final String DEFAULT_REPORT_DESIGNER_ROLE = "report designer";
+    public static final String ADMINISTRATOR_ROLE = "administrator";
+    public static final String QUERY_DESIGNER_ROLE = "query designer";
 
-    private static final String[] DEFAULT_ROLE_NAMES = {DEFAULT_ADMINISTRATOR_ROLE, DEFAULT_QUERY_DESIGNER_ROLE, DEFAULT_REPORT_DESIGNER_ROLE};
+    private static final String[] DEFAULT_ROLE_NAMES = {ADMINISTRATOR_ROLE, QUERY_DESIGNER_ROLE};
 
     public QvuCustomSecurity() {
         System.out.println("in QvuCustomSecurity()");
@@ -59,6 +59,8 @@ public class QvuCustomSecurity implements SecurityService {
         ui.setFirstName("John");
         ui.setLastName("Doe");
         ui.setPassword("F6FDFFE48C908DEB0F4C3BD36C032E72");
+        
+        // add all roles to admin
         ui.getRoles().addAll(Arrays.asList(DEFAULT_ROLE_NAMES));
         
         retval.add(ui);
@@ -68,8 +70,7 @@ public class QvuCustomSecurity implements SecurityService {
         ui.setFirstName("Joe");
         ui.setLastName("Blow");
         ui.setPassword("5CC32E366C87C4CB49E4309B75F57D64");
-        ui.getRoles().add(DEFAULT_QUERY_DESIGNER_ROLE);
-        ui.getRoles().add(DEFAULT_REPORT_DESIGNER_ROLE);
+        ui.getRoles().add(QUERY_DESIGNER_ROLE);
         
         retval.add(ui);
         
