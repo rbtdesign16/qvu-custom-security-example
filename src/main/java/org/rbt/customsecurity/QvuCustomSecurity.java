@@ -7,13 +7,15 @@ package org.rbt.customsecurity;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import org.rbt.qvu.client.utils.AuthenticationException;
-import org.rbt.qvu.client.utils.DeleteException;
-import org.rbt.qvu.client.utils.OperationResult;
-import org.rbt.qvu.client.utils.Role;
-import org.rbt.qvu.client.utils.SaveException;
-import org.rbt.qvu.client.utils.SecurityService;
-import org.rbt.qvu.client.utils.User;
+import org.rbtdesign.qvu.client.utils.AuthenticationException;
+
+
+import org.rbtdesign.qvu.client.utils.DeleteException;
+import org.rbtdesign.qvu.client.utils.OperationResult;
+import org.rbtdesign.qvu.client.utils.Role;
+import org.rbtdesign.qvu.client.utils.SaveException;
+import org.rbtdesign.qvu.client.utils.SecurityService;
+import org.rbtdesign.qvu.client.utils.User;
 
 /**
  *
