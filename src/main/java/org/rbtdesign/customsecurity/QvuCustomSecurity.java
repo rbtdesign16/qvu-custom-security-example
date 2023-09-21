@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  */
 
-package org.rbt.customsecurity;
+package org.rbtdesign.customsecurity;
 
 import java.util.ArrayList;
 import java.util.Arrays;
