@@ -113,13 +113,14 @@ public class PrimeStrangeAttractor {
             pw.println("\tconst gridScale = 500000;");
             pw.println("\tconst AXIS_COLOR = 'crimson';");
             pw.println("\tconst SPIRAL_COLOR = 'jade';");
+            pw.println("\tconst ANGLE_LINE_COLOR = 'forestgreen';");
             pw.println("\tconst CONCENTRIC_RING_COLOR = 'CornflowerBlue';");
             pw.println("\tconst DEFAULT_ALPHA = 0.01;");
-            pw.println("\tconst DEFAULT_LINE_WIDTH = 29;");
+            pw.println("\tconst DEFAULT_LINE_WIDTH = 25;");
             pw.println("\tconst SCALING_FACTOR  = Math.PI / 6000;");
-            pw.println("\t\tconst centerX = " + (CANVAS_SIZE / 2) + ";");
-            pw.println("\t\tconst centerY = " + (CANVAS_SIZE / 2) + ";");
-            pw.println("\t\tconst GRAPH_LINE_VALUES = [1000000, 5000000, 10000000, 15000000];");
+            pw.println("\tconst centerX = " + (CANVAS_SIZE / 2) + ";");
+            pw.println("\tconst centerY = " + (CANVAS_SIZE / 2) + ";");
+            pw.println("\tconst GRAPH_LINE_VALUES = [1000000, 5000000, 10000000, 15000000];");
             pw.println();
             
             pw.println("\tasync function doGraph() {");
@@ -141,7 +142,7 @@ public class PrimeStrangeAttractor {
             pw.println("\t\t}");
             
             pw.println("\t\tcxt.stroke();");
-            pw.println("\t\t// draw grid lines");
+            pw.println("\t\t// concentric lines");
             pw.println("\t\tcxt.beginPath();");
             pw.println("\t\tcxt.globalAlpha = 1.0;");
             pw.println("\t\tcxt.lineWidth = DEFAULT_LINE_WIDTH;");
@@ -150,6 +151,21 @@ public class PrimeStrangeAttractor {
             pw.println("\t\t\tcxt.arc(centerX, centerY, SCALING_FACTOR * GRAPH_LINE_VALUES[i], 0, 2 * Math.PI);");
             pw.println("\t\t}");
             pw.println("\t\tcxt.stroke();");
+
+            pw.println();
+            pw.println("// angle lines");
+            pw.println("\t\tcxt.beginPath();");
+            pw.println("\t\tcxt.strokeStyle = ANGLE_LINE_COLOR;");
+            pw.println("\t\tfor (let i = 1; i < 12; ++i) {");
+            pw.println("\t\t\tcxt.moveTo(centerX, centerY);");
+            pw.println("\t\t\tlet x = centerX +  (" + CANVAS_SIZE / 2 + ") * Math.cos(i * (Math.PI/6));");
+            pw.println("\t\t\tlet y = centerY + (" + CANVAS_SIZE / 2 + ")  * Math.sin(i * (Math.PI/6));");
+            pw.println("\t\t\tcxt.lineTo(x, y);");
+            pw.println("\t\t}");
+            pw.println("\t\tcxt.stroke();");
+
+            pw.println();
+            pw.println("// diagonal lines");
             pw.println("\t\tcxt.beginPath();");
             pw.println("\t\tcxt.strokeStyle = AXIS_COLOR;");
             pw.println("\t\tcxt.moveTo(0, centerY);");
@@ -157,6 +173,8 @@ public class PrimeStrangeAttractor {
             pw.println("\t\tcxt.moveTo(centerX, 0);");
             pw.println("\t\tcxt.lineTo(centerX, 2 * centerY);");
             pw.println("\t\tcxt.stroke();");
+            pw.println();
+            pw.println("// axis lines");
             pw.println("\t\tcxt.beginPath();");
             pw.println("\t\tcxt.lineWidth = DEFAULT_LINE_WIDTH;");
             pw.println("\t\tcxt.moveTo(0, 0);");
@@ -164,7 +182,6 @@ public class PrimeStrangeAttractor {
             pw.println("\t\tcxt.moveTo(0," + CANVAS_SIZE + ");");
             pw.println("\t\tcxt.lineTo(" + CANVAS_SIZE + ",0)");
             pw.println("\t\tcxt.stroke();");
-            
          //   printSpiralFunction(pw);
 
             pw.println("\t}");
