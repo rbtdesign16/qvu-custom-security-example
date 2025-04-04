@@ -25,7 +25,7 @@ public class PrimeStrangeAttractor {
 
     
     public static void main(String[] args) {
-        toSpiral();
+        printHtml();
     }
 
     private static List<Integer> loadPrimes() {
@@ -74,7 +74,7 @@ public class PrimeStrangeAttractor {
     }
 
     
-    private static void toSpiral() {
+    private static void printHtml() {
         PrintWriter pw = null;
         try {
             pw = new PrintWriter(OUTPUT_FILE);
@@ -112,12 +112,10 @@ public class PrimeStrangeAttractor {
             pw.println("\tconst BACKGROUND_COLOR = 'black';");
             pw.println("\tconst gridScale = 500000;");
             pw.println("\tconst AXIS_COLOR = 'firebrick';");
-            pw.println("\tconst SPIRAL_COLOR = 'jade';");
-            pw.println("\tconst ANGLE_LINE_COLOR = 'seagreen';");
             pw.println("\tconst CONCENTRIC_RING_COLOR = 'CornflowerBlue';");
-            pw.println("\tconst DEFAULT_ALPHA = 0.01;");
+            pw.println("\tconst DEFAULT_ALPHA = 0.015;");
             pw.println("\tconst DEFAULT_LINE_WIDTH = 25;");
-            pw.println("\tconst SCALING_FACTOR  = Math.PI / 6000;");
+            pw.println("\tconst SCALING_FACTOR  = Math.PI / 3600;");
             pw.println("\tconst centerX = " + (CANVAS_SIZE / 2) + ";");
             pw.println("\tconst centerY = " + (CANVAS_SIZE / 2) + ";");
             pw.println("\tconst GRAPH_LINE_VALUES = [1000000, 5000000, 10000000, 15000000];");
@@ -149,18 +147,6 @@ public class PrimeStrangeAttractor {
             pw.println("\t\tctx.strokeStyle = CONCENTRIC_RING_COLOR;");
             pw.println("\t\tfor (let i = 0; i < GRAPH_LINE_VALUES.length; ++i) {");
             pw.println("\t\t\tctx.arc(centerX, centerY, SCALING_FACTOR * GRAPH_LINE_VALUES[i], 0, 2 * Math.PI);");
-            pw.println("\t\t}");
-            pw.println("\t\tctx.stroke();");
-
-            pw.println();
-            pw.println("// angle lines");
-            pw.println("\t\tctx.beginPath();");
-            pw.println("\t\tctx.strokeStyle = ANGLE_LINE_COLOR;");
-            pw.println("\t\tfor (let i = 1; i < 24; ++i) {");
-            pw.println("\t\t\tctx.moveTo(centerX, centerY);");
-            pw.println("\t\t\tlet x = centerX +  (" + CANVAS_SIZE / 2 + ") * Math.cos(i * (Math.PI/12));");
-            pw.println("\t\t\tlet y = centerY + (" + CANVAS_SIZE / 2 + ")  * Math.sin(i * (Math.PI/12));");
-            pw.println("\t\t\tctx.lineTo(x, y);");
             pw.println("\t\t}");
             pw.println("\t\tctx.stroke();");
 
