@@ -168,10 +168,7 @@ public class PrimeStrangeAttractor {
             pw.println("\t\tctx.moveTo(0," + CANVAS_SIZE + ");");
             pw.println("\t\tctx.lineTo(" + CANVAS_SIZE + ",0)");
             pw.println("\t\tctx.stroke();");
-            pw.println("\tdrawSpiral(ctx);");
-         
             pw.println("\t}");
- 
             
             pw.println("\t// draw scaled prime magnited for specified prime gap");
             pw.println("\t// on circle in polar coordinates - 2 PI cover entire range");
