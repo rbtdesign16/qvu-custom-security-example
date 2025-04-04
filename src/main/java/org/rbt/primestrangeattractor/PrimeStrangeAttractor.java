@@ -19,7 +19,7 @@ public class PrimeStrangeAttractor {
     private static final int GAPS_PER_LINE = 50;
     private static final int PRIMES_PER_LINE = 2000;
     private static final String CANVAS_BACK_COLOR = "black";
-    private static final String OUTPUT_FILE = "/Users/rbtuc/Desktop/spiral.html";
+    private static final String OUTPUT_FILE = "/Users/rbtuc/Desktop/pagraph.html";
     private static final String PRIME_FILE = "/Users/rbtuc/Desktop/primes.txt";
     private static final  String GAP_FILE = "/Users/rbtuc/Desktop/diff.csv";
 
