@@ -108,10 +108,14 @@ public class PrimeStrangeAttractor {
             pw.println("\tconst primes = " + buildArray(loadPrimes(), PRIMES_PER_LINE, false) + ";");
             pw.println();
             
-            pw.println("\tconst lineColor = 'LightGoldenrodYellow';");
-            pw.println("\tconst backgroundColor = 'black';");
+            pw.println("\tconst PLOT_LINE_COLOR = 'LightGoldenrodYellow';");
+            pw.println("\tconst BACKGROUND_COLOR = 'black';");
             pw.println("\tconst gridScale = 500000;");
-            pw.println("\tconst DEFAULT_ALPHA = 0.01");
+            pw.println("\tconst AXIS_COLOR = 'crimson';");
+            pw.println("\tconst SPIRAL_COLOR = 'jade';");
+            pw.println("\tconst CONCENTRIC_RING_COLOR = 'CornflowerBlue';");
+            pw.println("\tconst DEFAULT_ALPHA = 0.01;");
+            pw.println("\tconst DEFAULT_LINE_WIDTH = 29;");
             pw.println("\tconst SCALING_FACTOR  = Math.PI / 6000;");
             pw.println("\t\tconst centerX = " + (CANVAS_SIZE / 2) + ";");
             pw.println("\t\tconst centerY = " + (CANVAS_SIZE / 2) + ";");
@@ -121,7 +125,7 @@ public class PrimeStrangeAttractor {
             pw.println("\tasync function doGraph() {");
             pw.println("\t\tlet c=document.getElementById('sp');");
             pw.println("\t\tlet cxt=c.getContext('2d');");
-            pw.println("\t\tcxt.strokeStyle = lineColor;");
+            pw.println("\t\tcxt.strokeStyle = PLOT_LINE_COLOR;");
             pw.println("\t\tcxt.globalAlpha = DEFAULT_ALPHA ;");
             pw.println("\t\tcxt.lineWidth = 1;");
             pw.println();
@@ -140,26 +144,30 @@ public class PrimeStrangeAttractor {
             pw.println("\t\t// draw grid lines");
             pw.println("\t\tcxt.beginPath();");
             pw.println("\t\tcxt.globalAlpha = 1.0;");
-            pw.println("\t\tcxt.lineWidth = 25;");
-            pw.println("\t\tcxt.strokeStyle = 'royalblue';");
+            pw.println("\t\tcxt.lineWidth = DEFAULT_LINE_WIDTH;");
+            pw.println("\t\tcxt.strokeStyle = CONCENTRIC_RING_COLOR;");
             pw.println("\t\tfor (let i = 0; i < GRAPH_LINE_VALUES.length; ++i) {");
             pw.println("\t\t\tcxt.arc(centerX, centerY, SCALING_FACTOR * GRAPH_LINE_VALUES[i], 0, 2 * Math.PI);");
             pw.println("\t\t}");
+            pw.println("\t\tcxt.stroke();");
+            pw.println("\t\tcxt.beginPath();");
+            pw.println("\t\tcxt.strokeStyle = AXIS_COLOR;");
             pw.println("\t\tcxt.moveTo(0, centerY);");
             pw.println("\t\tcxt.lineTo(2 * centerX, centerY);");
             pw.println("\t\tcxt.moveTo(centerX, 0);");
             pw.println("\t\tcxt.lineTo(centerX, 2 * centerY);");
             pw.println("\t\tcxt.stroke();");
             pw.println("\t\tcxt.beginPath();");
-            pw.println("\t\tcxt.lineWidth = 30;");
-            pw.println("\t\tcxt.strokeStyle = 'darkred';");
+            pw.println("\t\tcxt.lineWidth = DEFAULT_LINE_WIDTH;");
             pw.println("\t\tcxt.moveTo(0, 0);");
             pw.println("\t\tcxt.lineTo(" + CANVAS_SIZE + "," + CANVAS_SIZE + ");");
             pw.println("\t\tcxt.moveTo(0," + CANVAS_SIZE + ");");
             pw.println("\t\tcxt.lineTo(" + CANVAS_SIZE + ",0)");
             pw.println("\t\tcxt.stroke();");
+            
+         //   printSpiralFunction(pw);
 
-            pw.println("\t\t}");
+            pw.println("\t}");
  
             
             pw.println("\t// draw scaled prime magnited for specified prime gap");
@@ -180,6 +188,24 @@ public class PrimeStrangeAttractor {
             pw.println();
     }
     
+    private static void printSpiralFunction(PrintWriter pw) {
+        pw.println("\tasync function drawSpiral(ctx) {");;
+        pw.println("\t\tcxt.beginPath();");
+        pw.println("\t\tcxt.lineWidth = 30;");
+        pw.println("\t\tcxt.strokeStyle = SPIRAL_COLOR;");
+        pw.println("\t\t\tlet theta = 0;");
+        pw.println("\t\tcxt.moveTo(centerX, 0);");
+        pw.println("\t\tlet increment = (primes[primes.length - 1] * SCALING_FACTOR);");
+        pw.println("\t\t\tcxt.moveTo(centerX, 0);");
+        pw.println("\t\tfor (let i = 0; i < 360; ++i) {");
+        pw.println("\t\t\ttheta += increment;");
+        pw.println("\t\t\tlet x = centerX + theta * Math.cos(theta); ");
+        pw.println("\t\t\tlet y = centerY + theta * Math.sin(theta);");
+        pw.println("\t\t\tcxt.lineTo(x, y);");
+        pw.println("\t\t}");
+        pw.println("\t\tcxt.stroke();");
+    }
+
     private static String buildArray(List<Integer> data, int itemsPerLine, boolean sort) {
         StringBuilder retval = new StringBuilder();
         int cnt = 1;
