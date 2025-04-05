@@ -115,9 +115,9 @@ public class PrimeStrangeAttractor {
             pw.println("\tconst CONCENTRIC_RING_COLOR = 'CornflowerBlue';");
             pw.println("\tconst DEFAULT_ALPHA = 0.015;");
             pw.println("\tconst DEFAULT_LINE_WIDTH = 25;");
+            pw.println("\tconst SCALING_FACTOR  = Math.PI / 7200;");
             pw.println("\tconst centerX = " + (CANVAS_SIZE / 2) + ";");
             pw.println("\tconst centerY = " + (CANVAS_SIZE / 2) + ";");
-            pw.println("\tconst SCALING_FACTOR  = (2 * Math.PI) / primes[primes.length - 1];");
             pw.println("\tconst GRAPH_LINE_VALUES = [1000000, 5000000, 10000000, 15000000];");
             pw.println();
             
@@ -146,7 +146,7 @@ public class PrimeStrangeAttractor {
             pw.println("\t\tctx.lineWidth = DEFAULT_LINE_WIDTH;");
             pw.println("\t\tctx.strokeStyle = CONCENTRIC_RING_COLOR;");
             pw.println("\t\tfor (let i = 0; i < GRAPH_LINE_VALUES.length; ++i) {");
-            pw.println("\t\t\tctx.arc(centerX, centerY, GRAPH_LINE_VALUES[i] * getOffset(GRAPH_LINE_VALUES[i]), 0, 2 * Math.PI);");
+            pw.println("\t\t\tctx.arc(centerX, centerY, SCALING_FACTOR * GRAPH_LINE_VALUES[i], 0, 2 * Math.PI);");
             pw.println("\t\t}");
             pw.println("\t\tctx.stroke();");
 
@@ -160,8 +160,6 @@ public class PrimeStrangeAttractor {
             pw.println("\t\tctx.lineTo(centerX, 2 * centerY);");
             pw.println("\t\tctx.stroke();");
             pw.println();
-            
-            
             pw.println("// axis lines");
             pw.println("\t\tctx.beginPath();");
             pw.println("\t\tctx.lineWidth = DEFAULT_LINE_WIDTH;");
@@ -171,27 +169,42 @@ public class PrimeStrangeAttractor {
             pw.println("\t\tctx.lineTo(" + CANVAS_SIZE + ",0)");
             pw.println("\t\tctx.stroke();");
             pw.println("\t}");
+ 
             
             pw.println("\t// draw scaled prime magnited for specified prime gap");
             pw.println("\t// on circle in polar coordinates - 2 PI cover entire range");
-            pw.println("\tfunction drawAttractor(ctx, gap, primeindx) {");
+            pw.println("\tasync function drawAttractor(ctx, gap, primeindx) {");
             pw.println("\t\tlet diff = primes[primeindx] - primes[primeindx - 1];");
             pw.println("\t\tif (diff == gap) {");
             pw.println("\t\t\tlet theta = primes[primeindx] * SCALING_FACTOR;");
-            pw.println("\t\t\tlet offset = getOffset(primeindx);");
-            pw.println("\t\t\tlet x = centerX + (offset * Math.cos(theta)); ");
-            pw.println("\t\t\tlet y = centerY + (offset * Math.sin(theta));");
+            pw.println("\t\t\tlet x = centerX + theta * Math.cos(theta); ");
+            pw.println("\t\t\tlet y = centerY + theta * Math.sin(theta);");
             pw.println("\t\t\tctx.lineTo(x, y);");
             pw.println("\t\t\tctx.moveTo(centerX, centerY);");
             pw.println("\t\t};");
             pw.println("\t};");
             pw.println();
-            pw.println("\tfunction getOffset(indx) { return centerX * (primes[indx]/primes[primes.length - 1]); };");
-            pw.println();
+
             pw.println("\t</script>");
             pw.println();
     }
     
+    private static void printSpiralFunction(PrintWriter pw) {
+        pw.println("\tasync function drawSpiral(ctx) {");;
+        pw.println("\t\tctx.beginPath();");
+        pw.println("\t\tctx.lineWidth = DEFAULT_LINE_WIDTH;");
+        pw.println("\t\tctx.strokeStyle = SPIRAL_COLOR;");
+        pw.println("\t\t\tlet thetaIncrement = (2 * Math.PI) / centerX;");
+        pw.println("\t\tfor (let i = 0; i < centerX; ++i) {");
+        pw.println("\t\t\tlet theta = thetaIncrement * i");
+        pw.println("\t\t\tlet x = centerX * Math.cos(theta); ");
+        pw.println("\t\t\tlet y = centerX * Math.sin(theta);");
+        pw.println("\t\t\tctx.lineTo(x, y);");
+        pw.println("\t\t}");
+        pw.println("\t\tctx.stroke();");
+        pw.println("\t}");
+    }
+
     private static String buildArray(List<Integer> data, int itemsPerLine, boolean sort) {
         StringBuilder retval = new StringBuilder();
         int cnt = 1;
