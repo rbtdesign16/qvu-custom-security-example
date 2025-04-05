@@ -14,13 +14,14 @@ import org.apache.commons.lang3.StringUtils;
  * @author rbtuc
  */
 public class PrimeStrangeAttractor {
-    private static final int CANVAS_SIZE = 16000;
-    private static final int CANVAS_ZOOM = 4;
+    private static final int CANVAS_SIZE = 23000;
+    private static final int CANVAS_ZOOM = 3;
     private static final int GAPS_PER_LINE = 50;
     private static final int PRIMES_PER_LINE = 1000;
-    private static final Integer SCALING_DENOMINATOR = 3880;
+    private static final Integer SCALING_DENOMINATOR = 4000;
+    private static final String[] LINE_COLORS = {"salmon", "teal", "cornsilk"};
     private static final String CANVAS_BACK_COLOR = "black";
-    private static final String OUTPUT_FILE = "/Users/rbtuc/Desktop/graph.html";
+    private static final String OUTPUT_FILE = "/Users/rbtuc/Desktop/psa-graph.html";
     private static final String PRIME_FILE = "/Users/rbtuc/Desktop/primes.txt";
     private static final  String GAP_FILE = "/Users/rbtuc/Desktop/diff.csv";
 
@@ -181,11 +182,22 @@ public class PrimeStrangeAttractor {
             pw.println("\t\t\tlet theta = primes[primeindx] * SCALING_FACTOR;");
             pw.println("\t\t\tlet x = centerX + theta * Math.cos(theta); ");
             pw.println("\t\t\tlet y = centerY + theta * Math.sin(theta);");
+            pw.println("\t\t\tctx.strokeStyle = getLineColor(ctx, primes[primeindx]);");
             pw.println("\t\t\tctx.lineTo(x, y);");
             pw.println("\t\t\tctx.moveTo(centerX, centerY);");
             pw.println("\t\t};");
             pw.println("\t};");
             pw.println();
+            pw.println("\tfunction getLineColor(ctx, val) {");
+            pw.println("\t\tif (val < 5000000) {");
+            pw.println("\t\t\treturn '" + LINE_COLORS[0] + "';");
+            pw.println("\t\t} else if (val > 10000000) {");
+            pw.println("\t\t\treturn '" + LINE_COLORS[2] + "';");
+            pw.println("\t\t } else {");
+            pw.println("\t\t\treturn '" + LINE_COLORS[1] + "';");
+            pw.println("\t\t}");
+            pw.println("\t}");
+
             pw.println("</script>");
             pw.println();
     }
