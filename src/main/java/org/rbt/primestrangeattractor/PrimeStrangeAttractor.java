@@ -18,6 +18,7 @@ public class PrimeStrangeAttractor {
     private static final int CANVAS_ZOOM = 4;
     private static final int GAPS_PER_LINE = 50;
     private static final int PRIMES_PER_LINE = 2000;
+    private static final Integer SCALING_DENOMINATOR = 4000;
     private static final String CANVAS_BACK_COLOR = "black";
     private static final String OUTPUT_FILE = "/Users/rbtuc/Desktop/graph.html";
     private static final String PRIME_FILE = "/Users/rbtuc/Desktop/primes.txt";
@@ -115,7 +116,7 @@ public class PrimeStrangeAttractor {
             pw.println("\tconst CONCENTRIC_RING_COLOR = 'CornflowerBlue';");
             pw.println("\tconst DEFAULT_ALPHA = 0.015;");
             pw.println("\tconst DEFAULT_LINE_WIDTH = 25;");
-            pw.println("\tconst SCALING_FACTOR  = Math.PI / 7200;");
+            pw.println("\tconst SCALING_FACTOR  = Math.PI / " + SCALING_DENOMINATOR + ";");
             pw.println("\tconst centerX = " + (CANVAS_SIZE / 2) + ";");
             pw.println("\tconst centerY = " + (CANVAS_SIZE / 2) + ";");
             pw.println("\tconst GRAPH_LINE_VALUES = [1000000, 5000000, 10000000, 15000000];");
@@ -189,22 +190,6 @@ public class PrimeStrangeAttractor {
             pw.println();
     }
     
-    private static void printSpiralFunction(PrintWriter pw) {
-        pw.println("\tasync function drawSpiral(ctx) {");;
-        pw.println("\t\tctx.beginPath();");
-        pw.println("\t\tctx.lineWidth = DEFAULT_LINE_WIDTH;");
-        pw.println("\t\tctx.strokeStyle = SPIRAL_COLOR;");
-        pw.println("\t\t\tlet thetaIncrement = (2 * Math.PI) / centerX;");
-        pw.println("\t\tfor (let i = 0; i < centerX; ++i) {");
-        pw.println("\t\t\tlet theta = thetaIncrement * i");
-        pw.println("\t\t\tlet x = centerX * Math.cos(theta); ");
-        pw.println("\t\t\tlet y = centerX * Math.sin(theta);");
-        pw.println("\t\t\tctx.lineTo(x, y);");
-        pw.println("\t\t}");
-        pw.println("\t\tctx.stroke();");
-        pw.println("\t}");
-    }
-
     private static String buildArray(List<Integer> data, int itemsPerLine, boolean sort) {
         StringBuilder retval = new StringBuilder();
         int cnt = 1;
