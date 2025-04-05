@@ -18,7 +18,7 @@ public class PrimeStrangeAttractor {
     private static final int CANVAS_ZOOM = 4;
     private static final int GAPS_PER_LINE = 50;
     private static final int PRIMES_PER_LINE = 2000;
-    private static final Integer SCALING_DENOMINATOR = 4000;
+    private static final Integer SCALING_DENOMINATOR = 3000;
     private static final String CANVAS_BACK_COLOR = "black";
     private static final String OUTPUT_FILE = "/Users/rbtuc/Desktop/graph.html";
     private static final String PRIME_FILE = "/Users/rbtuc/Desktop/primes.txt";
@@ -120,6 +120,7 @@ public class PrimeStrangeAttractor {
             pw.println("\tconst centerX = " + (CANVAS_SIZE / 2) + ";");
             pw.println("\tconst centerY = " + (CANVAS_SIZE / 2) + ";");
             pw.println("\tconst GRAPH_LINE_VALUES = [1000000, 5000000, 10000000, 15000000];");
+            pw.println("let imgindx = 1;");
             pw.println();
             
             pw.println("\tasync function doGraph() {");
@@ -185,8 +186,7 @@ public class PrimeStrangeAttractor {
             pw.println("\t\t};");
             pw.println("\t};");
             pw.println();
-
-            pw.println("\t</script>");
+            pw.println("</script>");
             pw.println();
     }
     
