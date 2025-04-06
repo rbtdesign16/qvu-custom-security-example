@@ -15,8 +15,8 @@ public class PrimeStrangeAttractor {
     private static final int GAPS_PER_LINE = 50;
     private static final int PRIMES_PER_LINE = 1000;
     private static final Integer SCALING_DENOMINATOR = 4000;
-    private static final String[] LINE_COLORS = {"orange", "cornsilk", "cyan"};
-    private static final String[] LINE_ALPHA = {"0.3", "0.2", "0.1"};
+    private static final String[] LINE_COLORS = {"cornsilk", "cyan", "goldenrod"};
+    private static final String[] LINE_ALPHA = {"0.1", "0.1", "0.02"};
     private static final String CANVAS_BACK_COLOR = "black";
     private static final String OUTPUT_FILE = "/Users/rbtuc/Desktop/psa-graph.html";
     private static final String PRIME_FILE = "/Users/rbtuc/Desktop/primes.txt";
