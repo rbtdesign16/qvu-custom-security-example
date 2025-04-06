@@ -9,10 +9,6 @@ import java.util.Collections;
 import java.util.List;
 import org.apache.commons.lang3.StringUtils;
 
-/**
- *
- * @author rbtuc
- */
 public class PrimeStrangeAttractor {
     private static final int CANVAS_SIZE = 23000;
     private static final int CANVAS_ZOOM = 3;
