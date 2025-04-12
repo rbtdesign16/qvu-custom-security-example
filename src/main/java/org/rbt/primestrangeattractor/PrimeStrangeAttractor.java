@@ -132,9 +132,9 @@ public class PrimeStrangeAttractor {
         pw.println("\t\tctx.globalAlpha = 1.0;");
         pw.println("\t\tctx.lineWidth = AXIS_WIDTH;");
         pw.println("\t\tctx.strokeStyle = SCALE_LINE_COLOR;");
-        pw.println("\t\tctx.arc(centerX, centerY, (5000000 * SCALING_FACTOR) / 2, 0, 2 * Math.PI);");
-        pw.println("\t\tctx.arc(centerX, centerY, (10000000 * SCALING_FACTOR) / 2, 0, 2 * Math.PI);");
-        pw.println("\t\tctx.arc(centerX, centerY, (15000000 * SCALING_FACTOR) / 2, 0, 2 * Math.PI);");
+        pw.println("\t\tctx.arc(centerX, centerY, (5000000 * SCALING_FACTOR), 0, 2 * Math.PI);");
+        pw.println("\t\tctx.arc(centerX, centerY, (10000000 * SCALING_FACTOR), 0, 2 * Math.PI);");
+        pw.println("\t\tctx.arc(centerX, centerY, (15000000 * SCALING_FACTOR), 0, 2 * Math.PI);");
         pw.println("\t\tctx.lineWidth = AXIS_WIDTH;");
         pw.println("\t\tctx.stroke();");
         pw.println("\t};");
