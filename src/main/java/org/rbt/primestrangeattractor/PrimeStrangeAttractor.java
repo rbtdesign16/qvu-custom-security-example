@@ -87,7 +87,7 @@ public class PrimeStrangeAttractor {
         pw.println("\tconst CANVAS_SIZE = " + CANVAS_SIZE + ";");
         pw.println("\tconst POINT_MODULUS = 500;");
         pw.println("\tconst PLOT_LINE_COLOR = '#01F9C6';");
-        pw.println("\tconst GRAPH_LINE_COLOR = 'crimson';");
+        pw.println("\tconst SCALE_LINE_COLOR = 'crimson';");
         pw.println("\tconst AXIS_COLOR = 'crimson';");
         pw.println("\tconst AXIS_WIDTH = 40;");
         pw.println("\tconst POINT_COLOR = 'magenta';");
@@ -108,6 +108,7 @@ public class PrimeStrangeAttractor {
         pw.println("\t\t\tdrawAttractor(ctx, primeindx);");
         pw.println("\t\t}");
         pw.println("\t\t\tdrawAxis(ctx);");
+        pw.println("\t\t\tdrawScale(ctx);");
         pw.println("\t}");
         pw.println();
 
