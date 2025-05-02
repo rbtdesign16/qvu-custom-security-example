@@ -9,10 +9,10 @@ import java.util.List;
 import org.apache.commons.lang3.StringUtils;
 
 public class PrimeStrangeAttractor {
-    private static final int CANVAS_SIZE = 16000;
-    private static final int CANVAS_ZOOM = 5;
-    private static final int PRIMES_PER_LINE = 1000;
-    private static final int MAX_PRIME_COUNT = 500000;
+    private static final int CANVAS_SIZE = 20000;
+    private static final int CANVAS_ZOOM = 3;
+    private static final int PRIMES_PER_LINE = 500;
+    private static final int MAX_PRIME_COUNT = 1000000;
     private static final String CANVAS_BACK_COLOR = "black";
     private static final String OUTPUT_FILE = "/Users/rbtuc/Desktop/psa-graph.html";
     private static final String PRIME_FILE = "C:\\dev\\projects\\primestrangeattractor\\src\\main\\java\\org\\rbt\\primestrangeattractor\\primes.txt";
@@ -86,19 +86,20 @@ public class PrimeStrangeAttractor {
 
         pw.println("\tconst CANVAS_SIZE = " + CANVAS_SIZE + ";");
         pw.println("\tconst AXIS_COLOR = 'crimson';");
-        pw.println("\tconst AXIS_WIDTH = 20;");
-        pw.println("\tconst POINT_SIZE = 10;");
+        pw.println("\tconst AXIS_WIDTH = 18;");
+        pw.println("\tconst POINT_SIZE = 6;");
         pw.println("\tconst centerX = CANVAS_SIZE / 2;");
         pw.println("\tconst centerY = CANVAS_SIZE / 2;");
-        pw.println("\tconst DEFAULT_ALPHA = 0.05;");
-        pw.println("\tconst DEFAULT_POINT_COLOR = 'cornsilk';");
+        pw.println("\tconst DEFAULT_ALPHA = 0.8;");
+        pw.println("\tconst DEFAULT_POINT_COLOR = 'white';");
         pw.println("\tconst MAX_PRIME_LIMIT = primes[primes.length - 1] + 100;");
         pw.println();
         pw.println("\tasync function doGraph() {");
         pw.println("\t\tlet ctx = document.getElementById('sp').getContext('2d');");
         pw.println("\t\t\tdrawAxis(ctx);");
-        pw.println("\t\t\tfor (let primeindx = 0; primeindx < primes.length; ++primeindx) {");
-        pw.println("\t\t\t\tdrawPoint(ctx, primeindx);");
+        pw.println("\t\t\tfor (let primeindx = 1; primeindx < primes.length; ++primeindx) {");
+      //  pw.println("\t\t\t\tdrawPoint(ctx, primeindx);");
+        pw.println("\t\t\tdrawAttractor(ctx, primeindx);");
         pw.println("\t\t\t}");
         pw.println("\t}");
         pw.println();
@@ -118,17 +119,40 @@ public class PrimeStrangeAttractor {
         pw.println();
 
         pw.println("\tfunction drawPoint(ctx, primeindx) {");
-        pw.println("\t\t\tctx.beginPath();");
-        pw.println("\t\t\tlet scale = (primes[primeindx] / primes[primes.length - 1]);");
-        pw.println("\t\t\tlet theta =  scale * Math.PI * 2;");
-        pw.println("\t\t\tlet offset =  scale * centerX;");
-        pw.println("\t\t\tlet x = centerX + offset * Math.cos(theta); ");
-        pw.println("\t\t\tlet y = centerY + offset * Math.sin(theta);");
-        pw.println("\t\t\tctx.globalAlpha = DEFAULT_ALPHA;");
-        pw.println("\t\t\tctx.fillStyle = DEFAULT_POINT_COLOR");
-        pw.println("\t\t\tctx.arc(x, y, POINT_SIZE, POINT_SIZE, Math.PI * 2);");
+        pw.println("\t\tctx.beginPath();");
+        pw.println("\t\tlet scale = (primes[primeindx] / primes[primes.length - 1]);");
+        pw.println("\t\tlet theta =  scale * Math.PI * 2;");
+        pw.println("\t\tlet offset =  scale * centerX;");
+        pw.println("\t\tlet x = centerX + offset * Math.cos(theta); ");
+        pw.println("\t\tlet y = centerY + offset * Math.sin(theta);");
+        pw.println("\t\tctx.globalAlpha = DEFAULT_ALPHA;");
+        pw.println("\t\tlet diff = primes[primeindx] - primes[primeindx - 1];");
+        pw.println("\t\tif (Math.log(diff) / Math.log(2) === 6) {");
+        pw.println("\t\t\tctx.fillStyle = 'gold';");
+        pw.println("\t\t\tctx.arc(x, y, 10, 0, Math.PI * 2);");
         pw.println("\t\t\tctx.fill();");
+        pw.println("\t\t} else {");
+    //    pw.println("\t\t\tctx.fillStyle = DEFAULT_POINT_COLOR");
+    //    pw.println("\t\t\tctx.lineWidth = 2");
+   //     pw.println("\t\t\tctx.arc(x, y, POINT_SIZE, 0, Math.PI * 2);");
+    //    pw.println("\t\t\tctx.fill();");
+        pw.println("\t\t};");
         pw.println("\t};");
+        
+        pw.println("\tasync function drawAttractor(ctx, primeindx) {");
+        pw.println("\t\tctx.beginPath();");
+        pw.println("\t\tctx.strokeStyle = 'goldenrod';");
+        pw.println("\t\tctx.globalAlpha = 0.02;");
+        pw.println("\t\tctx.lineWidth = 1;");
+        pw.println("\t\tlet scale = (10000.0 * Math.PI) / 16000000.0;");
+        pw.println("\t\tlet theta =  primes[primeindx] * scale;");
+        pw.println("\t\tlet newX = centerX + theta * Math.cos(theta); ");
+        pw.println("\t\tlet newY = centerY + theta * Math.sin(theta);");
+        pw.println("\t\tctx.moveTo(centerX, centerY);");
+        pw.println("\t\tctx.lineTo(newX, newY);");
+        pw.println("\t\tctx.stroke();");
+        pw.println("\t}");
+
         pw.println("</script>");
         pw.println();
 
